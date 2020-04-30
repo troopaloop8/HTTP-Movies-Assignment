@@ -66,6 +66,36 @@ body {
   color: white;
 }
 
+.edit-button {
+  position: absolute;
+  top: 100px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: lightseagreen;
+  color: green;
+  font-weight: 600;
+}
+.edit-button:hover {
+  background-color: green;
+  color: white;
+}
+
+.remove-button {
+  position: absolute;
+  top: 140px;
+  right: 25px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+  background-color: lightseagreen;
+  color: red;
+  font-weight: 900;
+}
+.remove-button:hover {
+  background-color: green;
+  color: white;
+}
+
 .home-button {
   padding: 5px 10px;
   background-color: lightskyblue;
@@ -74,4 +104,48 @@ body {
 .movie-warning {
   color: red;
   text-align: center;
+}
+
+.movie-update {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.movie-update label {
+  margin-bottom: 2%;
+}
+.movie-update input {
+  width: 25vw;
+}
+
+.stars {
+  height: 30vh;
+  display: flex;
+  width: 25vw;
+}
+
+.starsLabel {
+  display: flex;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.addMovieContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addButton {
+  margin-bottom: 1%;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+textarea:invalid {
+  border: 2px solid red;
 }

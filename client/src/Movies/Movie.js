@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
-function Movie({ addToSavedList }) {
+function Movie(props) {
   const [movie, setMovie] = useState(null);
   const params = useParams();
 
@@ -14,8 +14,20 @@ function Movie({ addToSavedList }) {
       .catch((err) => console.log(err.response));
   };
 
+  const removeMovie = (id) => {
+    axios
+      .delete(`http://localhost:5000/api/movies/${id}`)
+      .then((res) => {
+        let newArr = props.movieList.filter((movie) => {
+          return movie.id != id;
+        });
+        props.setMovieList(newArr);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
   const saveMovie = () => {
-    addToSavedList(movie);
+    props.addToSavedList(movie);
   };
 
   useEffect(() => {
@@ -33,6 +45,27 @@ function Movie({ addToSavedList }) {
       <div className="save-button" onClick={saveMovie}>
         Save
       </div>
+
+      <Link
+        className="edit-button"
+        to={{
+          pathname: `/update-movie/${movie.id}`,
+          movie: movie,
+          setMovie: setMovie,
+        }}
+      >
+        Edit{" "}
+      </Link>
+
+      <Link
+        className="remove-button"
+        onClick={() => {
+          removeMovie(movie.id);
+        }}
+        to="/"
+      >
+        Remove{" "}
+      </Link>
     </div>
   );
 }
